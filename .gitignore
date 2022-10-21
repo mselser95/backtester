@@ -108,3 +108,8 @@ fabric.properties
 
 env/
 *.egg-info
+.idea/*
+
+*.ipynb_checkpoints
+*__pycache__
+*.pyc
