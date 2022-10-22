@@ -1,3 +1,3 @@
 from .portfolio.portfolio import Portfolio
-from .simulation.simulation import Simulation
-from .strategy.strategy import Strategy
+from .simulation.simulated import MontecarloSimulation
+from .strategy import Long

@@ -8,10 +8,9 @@ Desc    :
 """
 
 
-class Strategy:
+class Asset:
 
-    def __init__(self):
-        pass
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
 
-    def step(self):
-        raise NotImplemented
