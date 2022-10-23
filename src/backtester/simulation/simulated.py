@@ -7,6 +7,7 @@ Time    : 8/23/21 1:28 PM
 Desc    :
 """
 import time
+from copy import copy
 
 import numpy as np
 
@@ -24,17 +25,25 @@ class MontecarloSimulation(simulation.Simulation):
         self.initial_portfolio = portfolio
 
         asset_list = set()
-        for strategy in self.initial_portfolio:
-            asset_list.union(strategy.get_assets())
+        for strategy in self.initial_portfolio.strategies:
+            asset_list.update(strategy.get_assets())
 
         self.price_generator = g.SimulatedPriceGenerator(asset_list)
 
     def run(self):
-        returns = np.array((self.times, self.steps))
+
+        returns = np.zeros((self.times, self.steps)) # define returns array
+
         for run in tqdm_notebook(range(self.times), total=self.times):  # run n simulations
-            portfolio = self.initial_portfolio.copy()
+            portfolio = copy(self.initial_portfolio)  # save copy of initial portfolio
+
             for step in range(self.steps):  # of m steps
-                returns[run][step] = portfolio.get_returns()
+                self.price_generator.update_prices()  # update prices of assets
+                returns[run, step] = portfolio.get_returns()  # calculate returns with new prices
+
+            self.price_generator.reset_prices()  # reset prices for new run
+            for strategy in self.initial_portfolio.strategies:
+                strategy.reset_strategy()
 
         return {
             "Returns": returns,

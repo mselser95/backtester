@@ -10,7 +10,16 @@ Desc    :
 
 class Asset:
 
-    def __init__(self, name, price):
+    def __init__(self, name, px, mu, sigma):
         self.name = name
-        self.price = price
+        self.px = px
+        self.parameters = {
+            "mu": mu,
+            "sigma": sigma
+        }
 
+    def get_px(self):
+        return self.px
+
+    def set_px(self, px):
+        self.px = px
