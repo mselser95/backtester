@@ -19,7 +19,8 @@ class SimulatedPriceGenerator:
     def update_prices(self):
         for asset in self.assets:
             px = asset.get_px()
-            asset.set_px(px * asset.parameters["mu"] + asset.parameters["sigma"] * np.random.normal())
+            px += asset.parameters["mu"] + asset.parameters["sigma"] * np.random.normal()
+            asset.set_px(px)
 
     def reset_prices(self):
         for asset, starting_px in zip(self.assets, self.starting_px):
