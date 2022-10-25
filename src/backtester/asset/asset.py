@@ -9,7 +9,6 @@ Desc    :
 
 
 class Asset:
-
     def __init__(self, name, px, mu, sigma):
         self.name = name
         self.px = px
