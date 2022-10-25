@@ -6,12 +6,3 @@ Author  : Matias Selser
 Time    : 8/23/21 1:28 PM
 Desc    :
 """
-
-
-class Simulation:
-
-    def __init__(self):
-        pass
-
-    def run(self):
-        raise NotImplemented

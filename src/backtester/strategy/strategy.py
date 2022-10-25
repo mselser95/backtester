@@ -12,3 +12,12 @@ class Strategy:
 
     def __init__(self):
         pass
+
+    def step(self):
+        raise NotImplemented
+
+    def get_assets(self):
+        raise NotImplemented
+
+    def reset_strategy(self):
+        raise NotImplemented
